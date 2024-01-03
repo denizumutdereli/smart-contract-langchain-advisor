@@ -1,0 +1,74 @@
+.messsageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #2b2c34;
+  border-top: 1px solid #2b2c34;
+  display: flex;
+  color: #fff;
+}
+
+.botMessageWrapper {
+  background-color: #444654;
+}
+
+.messageContainer {
+  display: flex;
+  padding: 1rem;
+  gap: 1.5rem;
+  max-width: 65rem;
+  margin: 0 auto;
+  overflow: auto;
+  position: relative;
+}
+
+/* take up more space with fullscreened */
+@media (min-width: 1024px) {
+  .messageContainer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.message {
+  font-size: 0.95em;
+  line-height: 1.5rem;
+}
+
+.message code {
+  white-space: pre-wrap;
+}
+
+.avatar {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10%;
+  float: left;
+}
+
+.contractsContainer {
+  margin-top: 10px;
+  gap: 1.5rem;
+  max-width: 48rem;
+  margin: 0 auto;
+  overflow: auto;
+  position: relative;
+}
+
+.toggleButton {
+  left: 0;
+  bottom: -30px; 
+  background-color: #f0f0f0; 
+  border: none;
+  padding: 0px 5px;
+  cursor: pointer;
+  font-size: 0.8em; 
+  width: 150px;
+  height: 24px;
+  text-align: center; 
+}
+
+.sourceContracts {
+}

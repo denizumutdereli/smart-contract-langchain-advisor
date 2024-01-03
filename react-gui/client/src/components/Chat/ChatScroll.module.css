@@ -1,0 +1,35 @@
+/* For Firefox */
+.chatContainer {
+  scrollbar-width: thin;
+  scrollbar-color: #b8b9c3 #343541;
+}
+
+/* For Chrome, Safari, and newer Edge versions */
+.chatContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chatContainer::-webkit-scrollbar-track {
+  background-color: #343541;
+  border-radius: 8px; /* Add border-radius for round corners */
+}
+
+.chatContainer::-webkit-scrollbar-thumb {
+  background-color: #b8b9c3;
+  border-radius: 8px; /* Add border-radius for round corners */
+}
+
+/* For older versions of Edge */
+.chatContainer::-ms-scrollbar {
+  width: 8px;
+}
+
+.chatContainer::-ms-scrollbar-track {
+  background-color: #343541;
+  border-radius: 8px; /* Add border-radius for round corners */
+}
+
+.chatContainer::-ms-scrollbar-thumb {
+  background-color: #b8b9c3;
+  border-radius: 8px; /* Add border-radius for round corners */
+}

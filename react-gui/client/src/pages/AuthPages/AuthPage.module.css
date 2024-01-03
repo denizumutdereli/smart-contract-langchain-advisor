@@ -1,0 +1,98 @@
+.AuthPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98vh;
+  background-color: #343541;
+}
+
+.authForm {
+  width: 50vw;
+  max-width: 450px;
+  background-color: #43455b;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.authForm h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #ffffff;
+}
+
+.Input {
+  border-radius: 5px;
+  background-color: #52566d;
+  color: #ffffff;
+  border: none;
+}
+
+.Input::placeholder {
+  color: #a0a3b1;
+}
+
+.Input:hover {
+  border: 1px solid #63697f;
+}
+
+.Input:focus {
+  outline: none;
+  border: none;
+  background-color: #52566d;
+}
+
+.authFormButton {
+  width: 100%;
+  background: #10a37f;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.authFormButton:hover {
+  background-color: #088966;
+  color: #e0e0e0;
+}
+
+.switchLink {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+}
+
+.switchLink a {
+  color: #10a37f;
+  text-decoration: none;
+}
+
+.switchLink a:hover {
+  text-decoration: underline;
+}
+
+.uploadListItem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.uploadButton {
+  width: 100%;
+  background: #343541;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.uploadButton:hover {
+  background-color: #2a2b35;
+  color: #e0e0e0;
+}

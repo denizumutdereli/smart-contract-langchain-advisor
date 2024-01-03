@@ -1,0 +1,50 @@
+.chatInputContainer {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem;
+  background-color: rgba(107, 108, 123, 0.2);
+  font-size: 1.2rem;
+}
+
+.chatInputContainer {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem;
+  background-color: rgba(107, 108, 123, 0.2);
+  font-size: 1.2rem;
+  border-radius: 6px;
+}
+
+.chatInputForm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.sendButton {
+  background-color: #10a37f;
+  color: #fff;
+  padding: 0.6rem;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sendButton:hover {
+  background-color: #088966;
+}
+
+.chatInput {
+  flex: 1;
+  background: transparent;
+  color: #c7c7c7;
+  outline: 0;
+  border: 0;
+  padding: 1.3rem;
+  font-size: 0.9rem;
+}
+
+.chatInput::placeholder {
+  color: #c7c7c7;
+}

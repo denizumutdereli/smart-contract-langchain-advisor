@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from docs.soliditylang.org/en/v0.8.23/070-breaking-changes.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2024 20:36:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solidity v0.7.0 Breaking Changes &mdash; Solidity 0.8.23 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/a4_railroad_diagram.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/fonts.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom-dark.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/toggle.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://docs.soliditylang.org/_/static/javascript/readthedocs-doc-embed.js"></script>
+        <script src="_static/js/constants.js"></script>
+        <script src="_static/js/initialize.js"></script>
+        <script src="_static/js/toggle.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Solidity v0.8.0 Breaking Changes" href="080-breaking-changes.html" />
+    <link rel="prev" title="Solidity v0.6.0 Breaking Changes" href="060-breaking-changes.html" /> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="https://docs.soliditylang.org/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "070-breaking-changes", "programming_language": "cpp", "project": "solidity", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "v0.8.23"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="https://docs.soliditylang.org/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index-2.html">
+            
+          </a>
+              <div class="version">
+                v0.8.23
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://docs.soliditylang.org/en/v0.8.23/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction-to-smart-contracts.html">Introduction to Smart Contracts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidity-by-example.html">Solidity by Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing-solidity.html">Installing the Solidity Compiler</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Language Description</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="layout-of-source-files.html">Layout of a Solidity Source File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure-of-a-contract.html">Structure of a Contract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units-and-global-variables.html">Units and Globally Available Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control-structures.html">Expressions and Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assembly.html">Inline Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheatsheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grammar.html">Language Grammar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compiler</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="using-the-compiler.html">Using the Compiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysing-compilation-output.html">Analysing the Compiler Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ir-breaking-changes.html">Solidity IR-based Codegen Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="internals/layout_in_storage.html">Layout of State Variables in Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/layout_in_memory.html">Layout in Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/layout_in_calldata.html">Layout of Call Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/variable_cleanup.html">Cleaning Up Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/source_mappings.html">Source Mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/optimizer.html">The Optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Contract Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abi-spec.html">Contract ABI Specification</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advisory content</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="security-considerations.html">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bugs.html">List of Known Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050-breaking-changes.html">Solidity v0.5.0 Breaking Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="060-breaking-changes.html">Solidity v0.6.0 Breaking Changes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solidity v0.7.0 Breaking Changes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#silent-changes-of-the-semantics">Silent Changes of the Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changes-to-the-syntax">Changes to the Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#inline-assembly">Inline Assembly</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#removal-of-unused-or-unsafe-features">Removal of Unused or Unsafe Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mappings-outside-storage">Mappings outside Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-and-events">Functions and Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expressions">Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#declarations">Declarations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#interface-changes">Interface Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-update-your-code">How to update your code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="080-breaking-changes.html">Solidity v0.8.0 Breaking Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Material</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="natspec-format.html">NatSpec Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smtchecker.html">SMTChecker and Formal Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yul.html">Yul</a></li>
+<li class="toctree-l1"><a class="reference internal" href="path-resolution.html">Import Path Resolution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="style-guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common-patterns.html">Common Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language-influences.html">Language Influences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brand-guide.html">Solidity Brand Guide</a></li>
+</ul>
+
+    <ul>
+        <li>
+            <a href="genindex.html">Keyword Index</a>
+        </li>
+    </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index-2.html">Solidity</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index-2.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Solidity v0.7.0 Breaking Changes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ethereum/solidity/blob/v0.8.23/docs/070-breaking-changes.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="solidity-v0-7-0-breaking-changes">
+<h1>Solidity v0.7.0 Breaking Changes<a class="headerlink" href="#solidity-v0-7-0-breaking-changes" title="Permalink to this heading"></a></h1>
+<p>This section highlights the main breaking changes introduced in Solidity
+version 0.7.0, along with the reasoning behind the changes and how to update
+affected code.
+For the full list check
+<a class="reference external" href="https://github.com/ethereum/solidity/releases/tag/v0.7.0">the release changelog</a>.</p>
+<section id="silent-changes-of-the-semantics">
+<h2>Silent Changes of the Semantics<a class="headerlink" href="#silent-changes-of-the-semantics" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Exponentiation and shifts of literals by non-literals (e.g. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;&lt;</span> <span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">**</span> <span class="pre">x</span></code>)
+will always use either the type <code class="docutils literal notranslate"><span class="pre">uint256</span></code> (for non-negative literals) or
+<code class="docutils literal notranslate"><span class="pre">int256</span></code> (for negative literals) to perform the operation.
+Previously, the operation was performed in the type of the shift amount / the
+exponent which can be misleading.</p></li>
+</ul>
+</section>
+<section id="changes-to-the-syntax">
+<h2>Changes to the Syntax<a class="headerlink" href="#changes-to-the-syntax" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>In external function and contract creation calls, Ether and gas is now specified using a new syntax:
+<code class="docutils literal notranslate"><span class="pre">x.f{gas:</span> <span class="pre">10000,</span> <span class="pre">value:</span> <span class="pre">2</span> <span class="pre">ether}(arg1,</span> <span class="pre">arg2)</span></code>.
+The old syntax – <code class="docutils literal notranslate"><span class="pre">x.f.gas(10000).value(2</span> <span class="pre">ether)(arg1,</span> <span class="pre">arg2)</span></code> – will cause an error.</p></li>
+<li><p>The global variable <code class="docutils literal notranslate"><span class="pre">now</span></code> is deprecated, <code class="docutils literal notranslate"><span class="pre">block.timestamp</span></code> should be used instead.
+The single identifier <code class="docutils literal notranslate"><span class="pre">now</span></code> is too generic for a global variable and could give the impression
+that it changes during transaction processing, whereas <code class="docutils literal notranslate"><span class="pre">block.timestamp</span></code> correctly
+reflects the fact that it is just a property of the block.</p></li>
+<li><p>NatSpec comments on variables are only allowed for public state variables and not
+for local or internal variables.</p></li>
+<li><p>The token <code class="docutils literal notranslate"><span class="pre">gwei</span></code> is a keyword now (used to specify, e.g. <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">gwei</span></code> as a number)
+and cannot be used as an identifier.</p></li>
+<li><p>String literals now can only contain printable ASCII characters and this also includes a variety of
+escape sequences, such as hexadecimal (<code class="docutils literal notranslate"><span class="pre">\xff</span></code>) and unicode escapes (<code class="docutils literal notranslate"><span class="pre">\u20ac</span></code>).</p></li>
+<li><p>Unicode string literals are supported now to accommodate valid UTF-8 sequences. They are identified
+with the <code class="docutils literal notranslate"><span class="pre">unicode</span></code> prefix: <code class="docutils literal notranslate"><span class="pre">unicode&quot;Hello</span> <span class="pre">😃&quot;</span></code>.</p></li>
+<li><p>State Mutability: The state mutability of functions can now be restricted during inheritance:
+Functions with default state mutability can be overridden by <code class="docutils literal notranslate"><span class="pre">pure</span></code> and <code class="docutils literal notranslate"><span class="pre">view</span></code> functions
+while <code class="docutils literal notranslate"><span class="pre">view</span></code> functions can be overridden by <code class="docutils literal notranslate"><span class="pre">pure</span></code> functions.
+At the same time, public state variables are considered <code class="docutils literal notranslate"><span class="pre">view</span></code> and even <code class="docutils literal notranslate"><span class="pre">pure</span></code>
+if they are constants.</p></li>
+</ul>
+<section id="inline-assembly">
+<h3>Inline Assembly<a class="headerlink" href="#inline-assembly" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Disallow <code class="docutils literal notranslate"><span class="pre">.</span></code> in user-defined function and variable names in inline assembly.
+It is still valid if you use Solidity in Yul-only mode.</p></li>
+<li><p>Slot and offset of storage pointer variable <code class="docutils literal notranslate"><span class="pre">x</span></code> are accessed via <code class="docutils literal notranslate"><span class="pre">x.slot</span></code>
+and <code class="docutils literal notranslate"><span class="pre">x.offset</span></code> instead of <code class="docutils literal notranslate"><span class="pre">x_slot</span></code> and <code class="docutils literal notranslate"><span class="pre">x_offset</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="removal-of-unused-or-unsafe-features">
+<h2>Removal of Unused or Unsafe Features<a class="headerlink" href="#removal-of-unused-or-unsafe-features" title="Permalink to this heading"></a></h2>
+<section id="mappings-outside-storage">
+<h3>Mappings outside Storage<a class="headerlink" href="#mappings-outside-storage" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>If a struct or array contains a mapping, it can only be used in storage.
+Previously, mapping members were silently skipped in memory, which
+is confusing and error-prone.</p></li>
+<li><p>Assignments to structs or arrays in storage does not work if they contain
+mappings.
+Previously, mappings were silently skipped during the copy operation, which
+is misleading and error-prone.</p></li>
+</ul>
+</section>
+<section id="functions-and-events">
+<h3>Functions and Events<a class="headerlink" href="#functions-and-events" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Visibility (<code class="docutils literal notranslate"><span class="pre">public</span></code> / <code class="docutils literal notranslate"><span class="pre">internal</span></code>) is not needed for constructors anymore:
+To prevent a contract from being created, it can be marked <code class="docutils literal notranslate"><span class="pre">abstract</span></code>.
+This makes the visibility concept for constructors obsolete.</p></li>
+<li><p>Type Checker: Disallow <code class="docutils literal notranslate"><span class="pre">virtual</span></code> for library functions:
+Since libraries cannot be inherited from, library functions should not be virtual.</p></li>
+<li><p>Multiple events with the same name and parameter types in the same
+inheritance hierarchy are disallowed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">A</span> <span class="pre">for</span> <span class="pre">B</span></code> only affects the contract it is mentioned in.
+Previously, the effect was inherited. Now, you have to repeat the <code class="docutils literal notranslate"><span class="pre">using</span></code>
+statement in all derived contracts that make use of the feature.</p></li>
+</ul>
+</section>
+<section id="expressions">
+<h3>Expressions<a class="headerlink" href="#expressions" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Shifts by signed types are disallowed.
+Previously, shifts by negative amounts were allowed, but reverted at runtime.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">finney</span></code> and <code class="docutils literal notranslate"><span class="pre">szabo</span></code> denominations are removed.
+They are rarely used and do not make the actual amount readily visible. Instead, explicit
+values like <code class="docutils literal notranslate"><span class="pre">1e20</span></code> or the very common <code class="docutils literal notranslate"><span class="pre">gwei</span></code> can be used.</p></li>
+</ul>
+</section>
+<section id="declarations">
+<h3>Declarations<a class="headerlink" href="#declarations" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The keyword <code class="docutils literal notranslate"><span class="pre">var</span></code> cannot be used anymore.
+Previously, this keyword would parse but result in a type error and
+a suggestion about which type to use. Now, it results in a parser error.</p></li>
+</ul>
+</section>
+</section>
+<section id="interface-changes">
+<h2>Interface Changes<a class="headerlink" href="#interface-changes" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>JSON AST: Mark hex string literals with <code class="docutils literal notranslate"><span class="pre">kind:</span> <span class="pre">&quot;hexString&quot;</span></code>.</p></li>
+<li><p>JSON AST: Members with value <code class="docutils literal notranslate"><span class="pre">null</span></code> are removed from JSON output.</p></li>
+<li><p>NatSpec: Constructors and functions have consistent userdoc output.</p></li>
+</ul>
+</section>
+<section id="how-to-update-your-code">
+<h2>How to update your code<a class="headerlink" href="#how-to-update-your-code" title="Permalink to this heading"></a></h2>
+<p>This section gives detailed instructions on how to update prior code for every breaking change.</p>
+<ul class="simple">
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">x.f.value(...)()</span></code> to <code class="docutils literal notranslate"><span class="pre">x.f{value:</span> <span class="pre">...}()</span></code>. Similarly <code class="docutils literal notranslate"><span class="pre">(new</span> <span class="pre">C).value(...)()</span></code> to
+<code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">C{value:</span> <span class="pre">...}()</span></code> and <code class="docutils literal notranslate"><span class="pre">x.f.gas(...).value(...)()</span></code> to <code class="docutils literal notranslate"><span class="pre">x.f{gas:</span> <span class="pre">...,</span> <span class="pre">value:</span> <span class="pre">...}()</span></code>.</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">now</span></code> to <code class="docutils literal notranslate"><span class="pre">block.timestamp</span></code>.</p></li>
+<li><p>Change types of right operand in shift operators to unsigned types. For example change <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;&gt;</span> <span class="pre">(256</span> <span class="pre">-</span> <span class="pre">y)</span></code> to
+<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;&gt;</span> <span class="pre">uint(256</span> <span class="pre">-</span> <span class="pre">y)</span></code>.</p></li>
+<li><p>Repeat the <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">A</span> <span class="pre">for</span> <span class="pre">B</span></code> statements in all derived contracts if needed.</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">public</span></code> keyword from every constructor.</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">internal</span></code> keyword from every constructor and add <code class="docutils literal notranslate"><span class="pre">abstract</span></code> to the contract (if not already present).</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">_slot</span></code> and <code class="docutils literal notranslate"><span class="pre">_offset</span></code> suffixes in inline assembly to <code class="docutils literal notranslate"><span class="pre">.slot</span></code> and <code class="docutils literal notranslate"><span class="pre">.offset</span></code>, respectively.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="060-breaking-changes.html" class="btn btn-neutral float-left" title="Solidity v0.6.0 Breaking Changes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="080-breaking-changes.html" class="btn btn-neutral float-right" title="Solidity v0.8.0 Breaking Changes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2023, The Solidity Authors.
+      <span class="commit">Revision <code>f704f362</code>.
+      </span></p>
+  </div>
+
+  
+    <p>
+        <a href="credits-and-attribution.html">Credits and attribution</a>.
+    </p>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-element">
+    <input class="container_toggle" type="checkbox" id="switch" name="mode">
+    <label for="switch"></label>
+    </span>
+
+    <span class="fa fa-v fa-element"> v: v0.8.23 <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Downloads</dt> 
+            <dd><a href="http://docs.soliditylang.org/_/downloads/en/v0.8.23/pdf/">pdf</a></dd>
+            
+            <dd><a href="http://docs.soliditylang.org/_/downloads/en/v0.8.23/epub/">epub</a></dd>
+            
+        </dl>
+        <dl>
+            <dt>Versions</dt> 
+            <dd><a href="https://docs.soliditylang.org/en/latest/">latest</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/stable/">stable</a></dd>
+            
+            <dd><a href="index.html">v0.8.23</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.22/">v0.8.22</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.21/">v0.8.21</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.20/">v0.8.20</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.19/">v0.8.19</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.18/">v0.8.18</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.17/">v0.8.17</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.16/">v0.8.16</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.15/">v0.8.15</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.14/">v0.8.14</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.13/">v0.8.13</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.12/">v0.8.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.11/">v0.8.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.10/">v0.8.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.9/">v0.8.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.8/">v0.8.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.7/">v0.8.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.6/">v0.8.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.5/">v0.8.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.4/">v0.8.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.3/">v0.8.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.2/">v0.8.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.1/">v0.8.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.0/">v0.8.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.6/">v0.7.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.5/">v0.7.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.4/">v0.7.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.3/">v0.7.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.2/">v0.7.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.1/">v0.7.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.0/">v0.7.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.12/">v0.6.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.11/">v0.6.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.10/">v0.6.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.9/">v0.6.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.8/">v0.6.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.7/">v0.6.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.6/">v0.6.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.5/">v0.6.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.4/">v0.6.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.3/">v0.6.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.2/">v0.6.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.1/">v0.6.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.0/">v0.6.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.17/">v0.5.17</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.16/">v0.5.16</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.15/">v0.5.15</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.14/">v0.5.14</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.13/">v0.5.13</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.12/">v0.5.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.11/">v0.5.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.10/">v0.5.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.9/">v0.5.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.8/">v0.5.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.7/">v0.5.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.6/">v0.5.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.5/">v0.5.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.4/">v0.5.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.3/">v0.5.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.2/">v0.5.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.1/">v0.5.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.0/">v0.5.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.26/">v0.4.26</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.25/">v0.4.25</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.24/">v0.4.24</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.23/">v0.4.23</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.22/">v0.4.22</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.21/">v0.4.21</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.20/">v0.4.20</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.19/">v0.4.19</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.18/">v0.4.18</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.17/">v0.4.17</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.16/">v0.4.16</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.15/">v0.4.15</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.14/">v0.4.14</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.13/">v0.4.13</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.12/">v0.4.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.11/">v0.4.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.10/">v0.4.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.9/">v0.4.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.8/">v0.4.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.7/">v0.4.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.6/">v0.4.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.5/">v0.4.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.4/">v0.4.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.3/">v0.4.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.2/">v0.4.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.1/">v0.4.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.0/">v0.4.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.6/">v0.3.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.5/">v0.3.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.4/">v0.3.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.3/">v0.3.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.2/">v0.3.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.1/">v0.3.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.0/">v0.3.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.2.2/">v0.2.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.2.1/">v0.2.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.2.0/">v0.2.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.7/">v0.1.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.6/">v0.1.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.5/">v0.1.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.4/">v0.1.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.3/">v0.1.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.2/">v0.1.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/develop/">develop</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/breaking/">breaking</a></dd>
+            
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="http://readthedocs.org/projects/solidity/?fromdocs=solidity">Project Home</a>
+            </dd>
+            <dd>
+                <a href="http://readthedocs.org/builds/solidity/?fromdocs=solidity">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+
+<!-- Mirrored from docs.soliditylang.org/en/v0.8.23/070-breaking-changes.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2024 20:36:17 GMT -->
+</html>

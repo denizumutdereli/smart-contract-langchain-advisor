@@ -1,0 +1,45 @@
+.centeredContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 98vh;
+  text-align: center;
+}
+
+.title {
+  color: #e5e5e5;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #b0b0b0;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.instructions {
+  color: #ffffff;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 250px;
+}
+
+.button {
+  background: #10a37f;
+  color: #ffffff;
+  width: 80px;
+  margin: 5px;
+}
+
+.button:hover {
+  background-color: #088966;
+  color: #e0e0e0;
+}

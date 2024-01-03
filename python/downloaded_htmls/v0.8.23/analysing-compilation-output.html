@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from docs.soliditylang.org/en/v0.8.23/analysing-compilation-output.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2024 20:36:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysing the Compiler Output &mdash; Solidity 0.8.23 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/a4_railroad_diagram.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/fonts.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom-dark.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/toggle.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://docs.soliditylang.org/_/static/javascript/readthedocs-doc-embed.js"></script>
+        <script src="_static/js/constants.js"></script>
+        <script src="_static/js/initialize.js"></script>
+        <script src="_static/js/toggle.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Solidity IR-based Codegen Changes" href="ir-breaking-changes.html" />
+    <link rel="prev" title="Using the Compiler" href="using-the-compiler.html" /> 
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="https://docs.soliditylang.org/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": true, "api_host": "https://readthedocs.org", "builder": "sphinx", "canonical_url": null, "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": null, "language": "en", "page": "analysing-compilation-output", "programming_language": "cpp", "project": "solidity", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "", "version": "v0.8.23"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="https://docs.soliditylang.org/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index-2.html">
+            
+          </a>
+              <div class="version">
+                v0.8.23
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://docs.soliditylang.org/en/v0.8.23/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction-to-smart-contracts.html">Introduction to Smart Contracts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidity-by-example.html">Solidity by Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing-solidity.html">Installing the Solidity Compiler</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Language Description</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="layout-of-source-files.html">Layout of a Solidity Source File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure-of-a-contract.html">Structure of a Contract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units-and-global-variables.html">Units and Globally Available Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="control-structures.html">Expressions and Control Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contracts.html">Contracts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assembly.html">Inline Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheatsheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grammar.html">Language Grammar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compiler</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="using-the-compiler.html">Using the Compiler</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analysing the Compiler Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ir-breaking-changes.html">Solidity IR-based Codegen Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="internals/layout_in_storage.html">Layout of State Variables in Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/layout_in_memory.html">Layout in Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/layout_in_calldata.html">Layout of Call Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/variable_cleanup.html">Cleaning Up Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/source_mappings.html">Source Mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internals/optimizer.html">The Optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Contract Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abi-spec.html">Contract ABI Specification</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advisory content</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security-considerations.html">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bugs.html">List of Known Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="050-breaking-changes.html">Solidity v0.5.0 Breaking Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="060-breaking-changes.html">Solidity v0.6.0 Breaking Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="070-breaking-changes.html">Solidity v0.7.0 Breaking Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="080-breaking-changes.html">Solidity v0.8.0 Breaking Changes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Material</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="natspec-format.html">NatSpec Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="smtchecker.html">SMTChecker and Formal Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yul.html">Yul</a></li>
+<li class="toctree-l1"><a class="reference internal" href="path-resolution.html">Import Path Resolution</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="style-guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common-patterns.html">Common Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language-influences.html">Language Influences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brand-guide.html">Solidity Brand Guide</a></li>
+</ul>
+
+    <ul>
+        <li>
+            <a href="genindex.html">Keyword Index</a>
+        </li>
+    </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index-2.html">Solidity</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index-2.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Analysing the Compiler Output</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/ethereum/solidity/blob/v0.8.23/docs/analysing-compilation-output.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analysing-the-compiler-output">
+<span id="index-0"></span><h1>Analysing the Compiler Output<a class="headerlink" href="#analysing-the-compiler-output" title="Permalink to this heading"></a></h1>
+<p>It is often useful to look at the assembly code generated by the compiler. The generated binary,
+i.e., the output of <code class="docutils literal notranslate"><span class="pre">solc</span> <span class="pre">--bin</span> <span class="pre">contract.sol</span></code>, is generally difficult to read. It is recommended
+to use the flag <code class="docutils literal notranslate"><span class="pre">--asm</span></code> to analyse the assembly output. Even for large contracts, looking at a
+visual diff of the assembly before and after a change is often very enlightening.</p>
+<p>Consider the following contract (named, say <code class="docutils literal notranslate"><span class="pre">contract.sol</span></code>):</p>
+<p class="remix-link-container"><a class="remix-link reference external" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.23&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC41LjAgPDAuOS4wOwpjb250cmFjdCBDIHsKICAgIGZ1bmN0aW9uIG9uZSgpIHB1YmxpYyBwdXJlIHJldHVybnMgKHVpbnQpIHsKICAgICAgICByZXR1cm4gMTsKICAgIH0KfQ==" target="_blank">open in Remix</a></p>
+<div class="highlight-solidity notranslate"><div class="highlight"><pre><span></span><span class="c1">// SPDX-License-Identifier: GPL-3.0</span>
+<span class="k">pragma solidity</span><span class="w"> </span><span class="o">&gt;=</span><span class="k">0.5.0</span><span class="w"> </span><span class="o">&lt;</span><span class="k">0.9.0</span><span class="p">;</span>
+<span class="k">contract</span><span class="w"> </span><span class="ni">C</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">one</span><span class="p">()</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span>pure<span class="w"> </span><span class="kt">returns</span><span class="w"> </span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">return</span><span class="w"> </span><span class="m m-Decimal">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The following would be the output of <code class="docutils literal notranslate"><span class="pre">solc</span> <span class="pre">--asm</span> <span class="pre">contract.sol</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>======= contract.sol:C =======
+EVM assembly:
+    /* &quot;contract.sol&quot;:0:86  contract C {... */
+  mstore(0x40, 0x80)
+  callvalue
+  dup1
+  iszero
+  tag_1
+  jumpi
+  0x00
+  dup1
+  revert
+tag_1:
+  pop
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* &quot;contract.sol&quot;:0:86  contract C {... */
+      mstore(0x40, 0x80)
+      callvalue
+      dup1
+      iszero
+      tag_1
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_1:
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0x901717d1
+      eq
+      tag_3
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* &quot;contract.sol&quot;:17:84  function one() public pure returns (uint) {... */
+    tag_3:
+      tag_4
+      tag_5
+      jump  // in
+    tag_4:
+      mload(0x40)
+      tag_6
+      swap2
+      swap1
+      tag_7
+      jump  // in
+    tag_6:
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+    tag_5:
+        /* &quot;contract.sol&quot;:53:57  uint */
+      0x00
+        /* &quot;contract.sol&quot;:76:77  1 */
+      0x01
+        /* &quot;contract.sol&quot;:69:77  return 1 */
+      swap1
+      pop
+        /* &quot;contract.sol&quot;:17:84  function one() public pure returns (uint) {... */
+      swap1
+      jump  // out
+        /* &quot;#utility.yul&quot;:7:125   */
+    tag_10:
+        /* &quot;#utility.yul&quot;:94:118   */
+      tag_12
+        /* &quot;#utility.yul&quot;:112:117   */
+      dup2
+        /* &quot;#utility.yul&quot;:94:118   */
+      tag_13
+      jump  // in
+    tag_12:
+        /* &quot;#utility.yul&quot;:89:92   */
+      dup3
+        /* &quot;#utility.yul&quot;:82:119   */
+      mstore
+        /* &quot;#utility.yul&quot;:72:125   */
+      pop
+      pop
+      jump  // out
+        /* &quot;#utility.yul&quot;:131:353   */
+    tag_7:
+      0x00
+        /* &quot;#utility.yul&quot;:262:264   */
+      0x20
+        /* &quot;#utility.yul&quot;:251:260   */
+      dup3
+        /* &quot;#utility.yul&quot;:247:265   */
+      add
+        /* &quot;#utility.yul&quot;:239:265   */
+      swap1
+      pop
+        /* &quot;#utility.yul&quot;:275:346   */
+      tag_15
+        /* &quot;#utility.yul&quot;:343:344   */
+      0x00
+        /* &quot;#utility.yul&quot;:332:341   */
+      dup4
+        /* &quot;#utility.yul&quot;:328:345   */
+      add
+        /* &quot;#utility.yul&quot;:319:325   */
+      dup5
+        /* &quot;#utility.yul&quot;:275:346   */
+      tag_10
+      jump  // in
+    tag_15:
+        /* &quot;#utility.yul&quot;:229:353   */
+      swap3
+      swap2
+      pop
+      pop
+      jump  // out
+        /* &quot;#utility.yul&quot;:359:436   */
+    tag_13:
+      0x00
+        /* &quot;#utility.yul&quot;:425:430   */
+      dup2
+        /* &quot;#utility.yul&quot;:414:430   */
+      swap1
+      pop
+        /* &quot;#utility.yul&quot;:404:436   */
+      swap2
+      swap1
+      pop
+      jump  // out
+
+    auxdata: 0xa2646970667358221220a5874f19737ddd4c5d77ace1619e5160c67b3d4bedac75fce908fed32d98899864736f6c637827302e382e342d646576656c6f702e323032312e332e33302b636f6d6d69742e65613065363933380058
+}
+</pre></div>
+</div>
+<p>Alternatively, the above output can also be obtained from <a class="reference external" href="https://remix.ethereum.org/">Remix</a>,
+under the option “Compilation Details” after compiling a contract.</p>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">asm</span></code> output starts with the creation / constructor code. The deploy code is
+provided as part of the sub object (in the above example, it is part of the sub-object <code class="docutils literal notranslate"><span class="pre">sub_0</span></code>).
+The <code class="docutils literal notranslate"><span class="pre">auxdata</span></code> field corresponds to the contract <a class="reference internal" href="metadata.html#encoding-of-the-metadata-hash-in-the-bytecode"><span class="std std-ref">metadata</span></a>. The comments in the assembly output point to the
+source location. Note that <code class="docutils literal notranslate"><span class="pre">#utility.yul</span></code> is an internally generated file of utility functions
+that can be obtained using the flags <code class="docutils literal notranslate"><span class="pre">--combined-json</span>
+<span class="pre">generated-sources,generated-sources-runtime</span></code>.</p>
+<p>Similarly, the optimized assembly can be obtained with the command: <code class="docutils literal notranslate"><span class="pre">solc</span> <span class="pre">--optimize</span> <span class="pre">--asm</span>
+<span class="pre">contract.sol</span></code>. Often times, it is interesting to see if two different sources in Solidity result in
+the same optimized code. For example, to see if the expressions <code class="docutils literal notranslate"><span class="pre">(a</span> <span class="pre">*</span> <span class="pre">b)</span> <span class="pre">/</span> <span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span> <span class="pre">/</span> <span class="pre">c</span></code>
+generates the same bytecode. This can be easily done by taking a <code class="docutils literal notranslate"><span class="pre">diff</span></code> of the corresponding
+assembly output, after potentially stripping comments that reference the source locations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--asm</span></code> output is not designed to be machine readable. Therefore, there may be breaking
+changes on the output between minor versions of solc.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="using-the-compiler.html" class="btn btn-neutral float-left" title="Using the Compiler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ir-breaking-changes.html" class="btn btn-neutral float-right" title="Solidity IR-based Codegen Changes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2023, The Solidity Authors.
+      <span class="commit">Revision <code>f704f362</code>.
+      </span></p>
+  </div>
+
+  
+    <p>
+        <a href="credits-and-attribution.html">Credits and attribution</a>.
+    </p>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-element">
+    <input class="container_toggle" type="checkbox" id="switch" name="mode">
+    <label for="switch"></label>
+    </span>
+
+    <span class="fa fa-v fa-element"> v: v0.8.23 <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Downloads</dt> 
+            <dd><a href="http://docs.soliditylang.org/_/downloads/en/v0.8.23/pdf/">pdf</a></dd>
+            
+            <dd><a href="http://docs.soliditylang.org/_/downloads/en/v0.8.23/epub/">epub</a></dd>
+            
+        </dl>
+        <dl>
+            <dt>Versions</dt> 
+            <dd><a href="https://docs.soliditylang.org/en/latest/">latest</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/stable/">stable</a></dd>
+            
+            <dd><a href="index.html">v0.8.23</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.22/">v0.8.22</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.21/">v0.8.21</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.20/">v0.8.20</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.19/">v0.8.19</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.18/">v0.8.18</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.17/">v0.8.17</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.16/">v0.8.16</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.15/">v0.8.15</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.14/">v0.8.14</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.13/">v0.8.13</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.12/">v0.8.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.11/">v0.8.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.10/">v0.8.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.9/">v0.8.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.8/">v0.8.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.7/">v0.8.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.6/">v0.8.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.5/">v0.8.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.4/">v0.8.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.3/">v0.8.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.2/">v0.8.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.1/">v0.8.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.8.0/">v0.8.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.6/">v0.7.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.5/">v0.7.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.4/">v0.7.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.3/">v0.7.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.2/">v0.7.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.1/">v0.7.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.7.0/">v0.7.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.12/">v0.6.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.11/">v0.6.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.10/">v0.6.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.9/">v0.6.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.8/">v0.6.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.7/">v0.6.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.6/">v0.6.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.5/">v0.6.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.4/">v0.6.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.3/">v0.6.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.2/">v0.6.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.1/">v0.6.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.6.0/">v0.6.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.17/">v0.5.17</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.16/">v0.5.16</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.15/">v0.5.15</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.14/">v0.5.14</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.13/">v0.5.13</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.12/">v0.5.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.11/">v0.5.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.10/">v0.5.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.9/">v0.5.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.8/">v0.5.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.7/">v0.5.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.6/">v0.5.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.5/">v0.5.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.4/">v0.5.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.3/">v0.5.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.2/">v0.5.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.1/">v0.5.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.5.0/">v0.5.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.26/">v0.4.26</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.25/">v0.4.25</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.24/">v0.4.24</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.23/">v0.4.23</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.22/">v0.4.22</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.21/">v0.4.21</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.20/">v0.4.20</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.19/">v0.4.19</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.18/">v0.4.18</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.17/">v0.4.17</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.16/">v0.4.16</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.15/">v0.4.15</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.14/">v0.4.14</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.13/">v0.4.13</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.12/">v0.4.12</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.11/">v0.4.11</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.10/">v0.4.10</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.9/">v0.4.9</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.8/">v0.4.8</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.7/">v0.4.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.6/">v0.4.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.5/">v0.4.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.4/">v0.4.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.3/">v0.4.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.2/">v0.4.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.1/">v0.4.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.4.0/">v0.4.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.6/">v0.3.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.5/">v0.3.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.4/">v0.3.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.3/">v0.3.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.2/">v0.3.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.1/">v0.3.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.3.0/">v0.3.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.2.2/">v0.2.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.2.1/">v0.2.1</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.2.0/">v0.2.0</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.7/">v0.1.7</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.6/">v0.1.6</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.5/">v0.1.5</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.4/">v0.1.4</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.3/">v0.1.3</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/v0.1.2/">v0.1.2</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/develop/">develop</a></dd>
+            
+            <dd><a href="https://docs.soliditylang.org/en/breaking/">breaking</a></dd>
+            
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="http://readthedocs.org/projects/solidity/?fromdocs=solidity">Project Home</a>
+            </dd>
+            <dd>
+                <a href="http://readthedocs.org/builds/solidity/?fromdocs=solidity">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+
+<!-- Mirrored from docs.soliditylang.org/en/v0.8.23/analysing-compilation-output.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Jan 2024 20:36:17 GMT -->
+</html>

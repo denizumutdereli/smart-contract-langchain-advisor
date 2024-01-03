@@ -1,0 +1,79 @@
+.conversation,
+.conversationSelected {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  word-break: break-all;
+  font-size: 0.875rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.conversationSelected {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #2a2b32;
+  transition: padding-right 0.2s;
+  justify-content: space-between;
+}
+
+.sidebar .conversation:hover {
+  padding-right: 4px;
+  background-color: #2a2b32;
+}
+
+/* chat title styles */
+.chatTitleContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.chatTitleInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #888;
+  font-size: 0.9rem;
+  color: inherit;
+  outline: none;
+  width: 80%;
+  transition: border-color 0.2s;
+}
+
+.chatTitleInput:focus {
+  border-color: #555;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.editIcon,
+.deleteIcon {
+  padding-right: 0;
+  cursor: pointer;
+  color: #999999;
+  transition: color 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.conversation:hover {
+  padding-right: 4px;
+  background-color: #2a2b32;
+}
+
+.editIcon:hover,
+.deleteIcon:hover {
+  color: #ffffff;
+}

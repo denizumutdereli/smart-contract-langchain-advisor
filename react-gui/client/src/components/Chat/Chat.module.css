@@ -1,0 +1,14 @@
+.newChat {
+  overflow-y: auto;
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatContainer {
+  overflow-y: auto;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
