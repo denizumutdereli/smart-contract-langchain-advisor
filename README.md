@@ -49,9 +49,9 @@ Success was measured by the system's ability to accurately parse, understand, an
 - [ReactJS](https://reactjs.org/): For building a dynamic and responsive user interface.
 - [TypeScript](https://www.typescriptlang.org/): Enhancing JavaScript with types for more robust frontend code.
 
-![Writing Contracts](/images/write-contract.png)
+![Writing Contracts](./preview/images/write-contract.png)
 
-![Audition](/images/extended-content-and-audition.png)
+![Audition](./preview/images/extended-content-and-audition-perfect.png)
 
 ## Core Components
 ### Smart Contract Retrieval
@@ -87,7 +87,7 @@ For more information on Weaviate and its capabilities, you can visit their offic
 
 The use of Weaviate in this project ensures that the Solidity Smart-Contract Advisor is not only powerful in its analytical capabilities but also efficient and scalable, making it a state-of-the-art tool for smart contract analysis and advice.
 
-![Weaviate](/images/weaviate.png)
+![Weaviate](./preview/images/weaviate.png)
 
 ### UI Development
 I adapted and significantly modified the UI from [whuang214](https://github.com/whuang214) This ReactJS and TypeScript-based interface resembles a ChatGPT interaction model, tailored for our specific use case.
@@ -101,7 +101,7 @@ Additionally, the Flask API integrates LangChain, a framework designed to enhanc
 
 The combination of Flask, Weaviate, and LangChain provides a robust, scalable, and versatile backend infrastructure, capable of handling complex queries with precision and delivering contextually relevant responses in the domain of Solidity smart contracts.
 
-![Flask API Interaction](/images/flask-api-thinking.png)
+![Flask API Interaction](./preview/images/flask-api-thinking.png)
 
 ### LangChain
 [LangChain](https://www.langchain.com/) represents a revolutionary approach in the utilization of language models, playing a vital role in our Solidity Smart-Contract Advisor project. It's a framework specifically designed to augment the capabilities of language models, such as those provided by OpenAI, through the use of agents and augmented retrievals.
@@ -125,7 +125,7 @@ To interact with the Smart-Contract Advisor, users can input their queries throu
 The ui has almost same capabilities of the ChatGPT interface including, registeration to chat histories.
 Aside of this, if you check the console you will find out that LLM model refferencing to which vectors from Weaviate. It could be a couple of verified smart-contract or even an official documentation of the solidity. All combined, examined and have a conclusion.
 
-![Refferencing](/images/contract-refferencing.png)
+![Refferencing](./preview/images/contract-refferencing.png)
 
 ## Project Setup and Installation
 
@@ -176,7 +176,7 @@ Setting up the Solidity Smart-Contract Advisor involves several steps, including
      ```
      The folders have sample files but you can find all with zip formeted under python/dump folder
 
-![List of Verified Smart-Contracts](/images/verified-smart-contracts.png)
+![List of Verified Smart-Contracts](./preview/images/verified-smart-contracts.png)
 
 5. **Ingesting Data into Weaviate**:
    - Once all contracts are downloaded, use the `weaviate_ingest.py` script to chunk the data and insert it into the Weaviate Vector Database:
@@ -185,7 +185,7 @@ Setting up the Solidity Smart-Contract Advisor involves several steps, including
      ```
    - This process creates the necessary chunks and populates Weaviate with the vectorized data.
 
-![Ingestion](/images/ingestion.png)
+![Ingestion](./preview/images/ingestion.png)
 
 6. **Ingesting HTML Files**:
    - To ingest HTML documentation, run the `weaviate_ingest_htmls.py` script in a similar manner:
