@@ -10,7 +10,7 @@
 
 ![Contract Description](./images/contract-description.png)
 
-![Audition](./images/extended-content-and-audition.png)
+![Audition](./images/extended-content-and-audition-perfect.png)
 
 ![Refferencing](./images/contract-refferencing.png)
 

@@ -43,9 +43,9 @@ Success was measured by the system's ability to accurately parse, understand, an
 - [MongoDB](https://www.mongodb.com/): For efficient data storage and management.
 - [Python](https://www.python.org/): The primary programming language for backend development.
 - [Flask API](https://flask.palletsprojects.com/): Creating a scalable server-side application.
-- [LangChain](https://github.com/nickcdryan/LangChain): Enhancing the language model with a specialized Embedding Tokenizer and RetrievalQA logic.
-- [OpenAI Embeddings](https://beta.openai.com/): Leveraging advanced language understanding capabilities.
-- [Weaviate Vector Database](https://www.semi.technology/developers/weaviate/): Managing and querying vectorized data.
+- [LangChain](https://www.langchain.com/): Enhancing the language model with a specialized Embedding Tokenizer and RetrievalQA logic.
+- [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings): Leveraging advanced language understanding capabilities.
+- [Weaviate Vector Database](https://weaviate.io/): Managing and querying vectorized data.
 - [ReactJS](https://reactjs.org/): For building a dynamic and responsive user interface.
 - [TypeScript](https://www.typescriptlang.org/): Enhancing JavaScript with types for more robust frontend code.
 
@@ -82,8 +82,8 @@ The role of Weaviate in this project is multifaceted:
 5. **Overcoming Tokenization Limits**: One of the challenges with traditional Language Model (LM) tokenization is the limit on the number of tokens that can be processed in a single request. By creating and managing embeddings, Weaviate provides a workaround to these limitations. It allows for the handling and analysis of large and complex texts (like entire smart contracts) beyond the token limit imposed by LLMs. This feature is crucial in maintaining the integrity and context of longer documents or codes, enabling more thorough and accurate analysis in the Solidity Smart-Contract Advisor.
 
 For more information on Weaviate and its capabilities, you can visit their official website and documentation:
-- [Weaviate Official Website](https://www.semi.technology/developers/weaviate/)
-- [Weaviate Documentation](https://www.semi.technology/developers/weaviate/current/)
+- [Weaviate Official Website](https://weaviate.io/)
+- [Weaviate Documentation](https://weaviate.io/developers/weaviate)
 
 The use of Weaviate in this project ensures that the Solidity Smart-Contract Advisor is not only powerful in its analytical capabilities but also efficient and scalable, making it a state-of-the-art tool for smart contract analysis and advice.
 
